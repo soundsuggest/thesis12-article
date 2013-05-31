@@ -1,0 +1,160 @@
+
+% LaTeX template for extended abstract submissions to the 2nd International Conference on
+% Models and Technologies for Intelligent Transportation Systems
+% 22-24 June, 2011, Leuven, Belgium
+% Please do not change the layout of the document. Example text that should be substituted for
+% abstract submission is marked by "EDIT" with a description of what to fill in.
+
+% WARNING: Skip to title. Do not change these definitions
+\documentclass[a4paper,10pt,twocolumn]{article}
+
+\usepackage[a4paper,top=3cm,bottom=2.7cm,left=2cm,right=2cm]{geometry}	% Page formatting
+\usepackage[english]{babel}																							% Hyphenations
+\usepackage{amsthm}																											% Maths
+%\usepackage{graphicx,subfigure}																					% Figures
+\usepackage{graphicx}
+%\usepackage{lscape}																											% Indentation
+\usepackage{fancyhdr}																										% Document header
+\usepackage[calcwidth]{titlesec}																										% Sections and subsections layout
+\usepackage[hang,small,bf]{caption}
+\usepackage{hyperref}
+\usepackage{makeidx}
+\usepackage{subcaption}
+\usepackage[]{algorithm2e}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{placeins}
+
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{35pt}
+\pagestyle{fancyplain}
+\fancyhf{}
+\chead{\fancyplain{}{First draft of the scientific paper for the thesis Visualization of music suggestions by Joris Schelfaut}}
+\addto\captionsenglish{
+				\renewcommand{\abstractname}{ABSTRACT}
+				\renewcommand{\refname}{REFERENCES}
+}
+\makeatletter
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\it}
+\titleformat{\subsubsection}[block]{}{\thetitle}{0em}{}[\vspace{-1em}\rule{\titlewidth}{1pt}]
+\def\fnum@figure{Fig.\nobreakspace\thefigure}
+\makeatother
+
+% TITLE
+\title{\bf
+	% EDIT: Fill in the title of your submission
+	An explanation system for collaborative music recommendation using graph-based visualization
+}
+\author{
+        \small{\bf
+        	% EDIT: Fill in the name of the corresponding author
+        	Joris Schelfaut
+        	\footnote{
+        			% EDIT: Fill in the contact details of the corresponding author
+        			Joris Schelfaut - Louvain, Belgium, E-mail: joris.schelfaut@student.kuleuven.be
+        }} \\
+        \small{\emph{
+        	% EDIT: Fill in the affiliation of the corresponding author (other example given for at the third author)
+        	Faculty of Computer Science, Katholieke Universiteit Leuven, Belgium
+        }}
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+% ABSTRACT
+\abstract{
+\small{{\bf
+	%The abstract section should be no more than 250 words, formatted as specified in this LaTeX template.
+	%The abstract should give a clear indication of the objectives, scope, and results of the paper.
+	This is the abstract
+\\ % WARNING: Do not remove the new-line
+\emph{\textbf{Keywords:}}} \emph{
+	% EDIT: Keywords come here. Specify 3 to maximally 5 keywords, separated by commas.
+	recommender system, insight gaining, interactive visualization, usability
+}}
+}
+
+\section*{INTRODUCTION}\label{section:introduction}
+
+% Incentive + context recommender systems
+% Music recommendation
+% black box problem
+
+% insert number of artists / tracks on itunes
+Music catalogues for online retail have become immense over the past decades. Well-known artists and tracks make up a very small portion of this item space, which is known as the \emph{Long-tail phenomenon}. As a result, finding new, interesting music has become a challenging task. \emph{Recommender systems} try alleviate this problem by filtering the item repository based on a user's music taste. Taste can be modelled by analyzing user preferences and tracking user behaviour, e.g., by analyzing a user's listening history. There are two commonly applied filtering strategies\cite{rajaraman:2012}:
+
+\begin{itemize}
+	\item \textbf{Content-based filtering (CBF)}: Using chosen or modelled features of items to define similarity between items in the user profile and candidate suggestions;
+	\item \textbf{Collaborative filtering (CF)}: Using overlap of item sets of each user profile to find possible suggestions in the difference of these item sets.
+\end{itemize}
+
+CF-based approaches, or hybrid approaches of CBF, CF and possibly other strategies, are often applied in music recommendation. Although these recommender systems have proven to be successful in terms of prediction accuracy, the success of recommender system also relies on the trust in its recommendations by the end user. If the user does not know why a particular item is recommended to him, the user may be reluctant to check it out. Herlocker et al. \cite{herlocker:2000} describe this issue as the \emph{black box problem}. To improve acceptance of recommendations, they propose to build an explanation system presenting the user with a \emph{white box model} of the recommender system rationale.
+
+Explanation systems can have different properties: transparancy, scrutability, trust, effectiveness, persuasiveness, efficiency and satisfaction.
+
+This paper looks at an explanation system for collaborative music recommendation that uses a graph-based visualization. This system will be evaluated using insight and usability evaluation methods.
+
+
+\section*{RELATED WORK}\label{section:related_work}
+
+% Other visual explanation systems
+% insight gaining, (interactive) visualization: visual thinking processes
+% (graph) visualization techniques
+
+A number of explanation systems have been developed for recommender systems. In \cite{o'donovan2008} an application called \emph{PeerChooser} is presented by O'Donovan et al. It uses a graph-based visual explanation system for CF. Interactive elements incorporated in the visualization allow the active user to manipulate his/her neighbourhood. The \emph{SmallWords} application by Gretarsson et al. \cite{gretarsson2010} uses a similar approach. Pharos \cite{zhao2010} also builds on ideas brought forth in \cite{herlocker2000} and \cite{o'donovan2008}. The application computes a social map from the user's behaviour in content-based websites. The TasteWeights application by Bostandjiev et al. is created for a hybrid recommendation system. It uses a graph-based approach to visualize relationships between the different recommender algorithms \cite{bostandjiev2012}.
+
+\begin{table}%
+	\caption{A comparison of the visual explanation systems, based on the criteria by Tintarev and Masthoff listed in \cite{tintarev:2007:SER:1547550.1547664}.}
+	\begin{tabular}{l | l l l l l l l }
+		\hline
+									&	\begin{sideways}Transparency\end{sideways} & \begin{sideways}Scrutability\end{sideways} & \begin{sideways}Trust\end{sideways} & \begin{sideways}Effectiveness\end{sideways} & \begin{sideways}Persuasiveness\end{sideways} & \begin{sideways}Efficiency\end{sideways} & \begin{sideways}Satisfaction\end{sideways}  \\
+		\hline
+								%	&	t & s	& t &	e	& p	& e	& s
+		PeerChooser		&	x &	x	&		&	x	& 	& 	& x	\\
+		Pharos				&	x	&		&	x	&		& 	& 	&  	\\
+		SFVis					&	x &		&		&		& 	& 	&  	\\
+		SmallWorlds		&	x	&	x	&		&	x	& 	& 	& x	\\
+		TasteWeights	&	x &	x	&	x	&	x	& 	& x	&  	\\
+		\hline
+	\end{tabular}
+	\label{table:comparison:criteria}
+\end{table}
+
+
+
+\section*{DESIGN}\label{section:design}
+
+% the visualization explained
+% 	- recommender rationale: utility matrix
+% 	- dual graph
+%		- node reduction
+%		- keeping neighbours as contextual information
+
+
+\section*{EVALUATION}\label{section:evaluation}
+
+% test users, methodology
+% usability (Nielsen, Duval)
+% insight (North)
+
+
+
+\section*{CONCLUSION}\label{section:conclusion}
+
+% usability
+% Tintarev criteria
+% insight?
+
+
+
+\bibliographystyle{abbrv}
+\bibliography{bib/references}
+
+\end{document}
